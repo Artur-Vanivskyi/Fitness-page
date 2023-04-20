@@ -6,7 +6,9 @@ import TargetImage from "../assets/icons/target.png";
 import EquipmentImage from "../assets/icons/equipment.png";
 
 function Detail({ exerciseDetail }) {
+  
   const { bodyPart, gitUrl, name, target, equipment } = exerciseDetail;
+
 
   const extraDetail = [
     {
@@ -35,7 +37,7 @@ function Detail({ exerciseDetail }) {
           target your {target}. It will help you improve your mood and gain
           energy.
         </Typography>
-        {exerciseDetail.map((item) => (
+        {Object.keys(exerciseDetail).map((item) => (
           <Stack key={item.name} direction="row" gap="24px" alignItems="center">
             <Button
               sx={{

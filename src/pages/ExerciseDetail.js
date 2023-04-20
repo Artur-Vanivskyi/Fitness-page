@@ -9,11 +9,13 @@ import ExerciseVideos from "../components/ExerciseVideos";
 import SimilarExercises from "../components/SimilarExercises";
 
 function ExerciseDetail() {
-  const [exerciseDetail, setExerciseDetail] = useState({});
+  const [exerciseDetail, setExerciseDetail] = useState([]);
   const [exerciseVideos, setExerciseVideos] = useState([]);
   const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
   const [equipmentExercises, setEquipmentExercises] = useState([]);
   const { id } = useParams();
+
+  console.log("line 19", exerciseDetail);
 
   useEffect(() => {
     const fetchExercisesData = async () => {
@@ -26,7 +28,7 @@ function ExerciseDetail() {
         exerciseOptions
       );
       setExerciseDetail(exerciseDetailData);
-
+     
       const exerciseVideosData = await fetchData(
         `${youtubeSearchUrl}/search?query=${exerciseDetailData.name}`,
         youtubeOptions
@@ -43,10 +45,12 @@ function ExerciseDetail() {
         exerciseOptions
       );
       setEquipmentExercises(equipmentExercisesData);
-    };
+     };
     fetchExercisesData();
   }, [id]);
 
+  console.log("line 79", exerciseDetail);
+  console.log("hello");
   return (
     <Box>
       <Detail exerciseDetail={exerciseDetail} />
